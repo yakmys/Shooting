@@ -1,0 +1,53 @@
+﻿///////////////////////////////////
+//製作者　名越大樹
+//制作日　9月11日
+//弾を管理するクラス
+///////////////////////////////////
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BulletManager : MonoBehaviour
+{
+    ///////////////////////////////////
+    //変数宣言開始
+    ///////////////////////////////////
+    [SerializeField]
+    GameObject bulletObj;
+    [SerializeField]
+    float intervalBullet;
+    float copyIntervalBullet;
+    [SerializeField]
+    GameMaster gameMasterScript;
+    ///////////////////////////////////
+    //変数宣言終了
+    ///////////////////////////////////
+
+    //以下処理コード
+    void Start()
+    {
+        copyIntervalBullet = intervalBullet;
+    }
+    public void InstanceBullet(Vector3 pos)
+    {
+        if (gameMasterScript.GetIsGame())
+        {
+            if (intervalBullet <= 0)
+            {
+                Instantiate(bulletObj, pos, Quaternion.identity);
+                intervalBullet = copyIntervalBullet;
+            }
+        }
+    }
+
+    void Update()
+    {
+        Interval();
+    }
+
+    void Interval()
+    {
+        intervalBullet -= Time.deltaTime;
+    }
+}
