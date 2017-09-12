@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿////////////////////////
+//製作者　名越大樹
+//製作日　9月12日
+//メインステージでのスタートのカウントダウンをするクラス
+////////////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;

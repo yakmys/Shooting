@@ -17,6 +17,10 @@ public class BackGroundManager : MonoBehaviour {
     [SerializeField]
     float iniWidthPos;
     float iniPosY;
+    
+    /// <summary>
+    /// 各背景画像の場所を整列
+    /// </summary>
     void Start()
     {
         for(int count = 0; count < backGroundImgList.Count; ++count )

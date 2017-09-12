@@ -75,7 +75,9 @@ public class WallManager : MonoBehaviour
         }
     }
 
+    //////////////
     //以下各壁の当たり判定をセットを開始
+    //////////////
     public void SetWallLeft(bool set)
     {
         isWallLeft = set;
@@ -95,9 +97,13 @@ public class WallManager : MonoBehaviour
     {
         isWallButtom = set;
     }
-    //以状各壁の当たり判定をセット終了
+    //////////////
+    //以上各壁の当たり判定をセット終了
+    //////////////
 
+    //////////////
     //以下各壁の当たり判定の取得を開始
+    //////////////
     public bool GetWallLeft()
     {
         return isWallLeft;
@@ -117,5 +123,7 @@ public class WallManager : MonoBehaviour
     {
         return isWallButtom;
     }
-    //以上各壁の当たり判定の取得を開始
+    //////////////
+    //以上各壁の当たり判定の取得を終了
+    //////////////
 }
