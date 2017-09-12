@@ -11,6 +11,8 @@ using UnityEngine;
 public class PlayerAction : MonoBehaviour {
 
     [SerializeField]
+    WallManager wallManagerScript;
+    [SerializeField]
     PlayerManager playerManagerScript;
     [SerializeField]
     PlayerStatus playerStatusScript;
@@ -18,11 +20,12 @@ public class PlayerAction : MonoBehaviour {
     BulletManager bulletManagerScript;
     bool IsMove;
     [SerializeField]
-    private GameObject centerPos;
+    GameObject centerPos;
     [SerializeField]
-    private float centerPosWidth;
+    float centerPosWidth;
     [SerializeField]
-    private float centerPosHeith;
+    float centerPosHeith;
+    float checkvalue;
 
     // Update is called once per frame
     void Update ()
@@ -61,8 +64,9 @@ public class PlayerAction : MonoBehaviour {
     {
         Vector3 inputmousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         inputmousepos.z = 0;
-        Vector3 diff = MousePosionCheck(inputmousepos);
-        transform.position += diff * playerStatusScript.GetMoveSpeed() * Time.deltaTime;
+        Vector3 movepos = MousePosionCheck(inputmousepos);
+        movepos = WallCollisionCheck(movepos);
+        transform.position += movepos * playerStatusScript.GetMoveSpeed() * Time.deltaTime;
     }
     
     /// <summary>
@@ -112,5 +116,45 @@ public class PlayerAction : MonoBehaviour {
     void BulletAction()
     {
         bulletManagerScript.InstanceBullet(transform.position);
+    }
+
+    /// <summary>
+    /// 壁に当たっているかをチェックする
+    /// </summary>
+    /// <param name="pos"></param>
+    /// <returns></returns>
+    Vector3 WallCollisionCheck(Vector3 pos)
+    {
+        if(pos.x == -1)//左側の壁の当たり判定
+        {
+            if(wallManagerScript.GetWallLeft())
+            {
+                pos.x = 0;
+            }
+        }
+        else if(pos.x == 1)//右側の壁の当たり判定
+        {
+            if (wallManagerScript.GetWallRight())
+            {
+                pos.x = 0;
+            }
+        }
+
+        if (pos.y == 1)//上側の壁の当たり判定
+        {
+            if (wallManagerScript.GetWallTop())
+            {
+                pos.y = 0;
+            }
+        }
+        else if (pos.x == -1)//下側の壁の当たり判定
+        {
+            if (wallManagerScript.GetWallButtom())
+            {
+                pos.y = 0;
+            }
+        }
+
+        return pos;
     }
 }
