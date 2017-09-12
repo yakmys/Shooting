@@ -10,8 +10,6 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-
-
     [SerializeField]
     GameMaster gameMasterScript;
     [SerializeField]
@@ -24,6 +22,7 @@ public class EnemyManager : MonoBehaviour
     InstanceClass instanceClassScript;
     int instanceClassListIndex;
     bool isInstance = true;
+
     void Start()
     {
         readEnemyCSVScript.ReadStart();
@@ -60,5 +59,10 @@ public class EnemyManager : MonoBehaviour
     public InstanceClass GetInstanceEnemyList()
     {
         return instanceClassList[instanceClassListIndex];
+    }
+
+    public bool GetIsPlay()
+    {
+        return gameMasterScript.GetIsGame();
     }
 }

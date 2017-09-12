@@ -20,10 +20,15 @@ public class EnemyInstance : MonoBehaviour
     [SerializeField]
     float instanceInterval;
     float copyInstanceInterval;
+
     void Start()
     {
         copyInstanceInterval = instanceInterval;
     }
+
+    /// <summary>
+    /// エネミーを生成
+    /// </summary>
     public void InstanceEnemy()
     {
         if (instanceInterval <= 0)
@@ -35,10 +40,8 @@ public class EnemyInstance : MonoBehaviour
             int getvalue = instanceclass.GetCount();
             getvalue--;
             instanceclass.SetCount(getvalue);
-            Debug.Log(getvalue);
             if (getvalue == 0)
             {
-                Debug.Log("hoge");
                 enemyManagerScript.SetIsInstance(false);
                 enemyManagerScript.InsranceClassIndexAdd();
             }
