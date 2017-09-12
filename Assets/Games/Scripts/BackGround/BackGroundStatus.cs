@@ -26,11 +26,19 @@ public class BackGroundStatus : MonoBehaviour {
         return moveSpeed;
     }
 
+    /// <summary>
+    /// 一定の距離に進んだら
+    /// </summary>
+    /// <returns></returns>
     public float GetBackGroundEndPos()
     {
         return backGoundEndPos.transform.position.x;
     }
     
+    /// <summary>
+    /// 現在の一番後ろの画像のポジションを取得
+    /// </summary>
+    /// <returns></returns>
     public float GetLastPos()
     {
        return backGroundManagerScript.LastPos();
