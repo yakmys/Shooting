@@ -10,7 +10,6 @@ using UnityEngine;
 
 public class EnemyAction : MonoBehaviour
 {
-
     [SerializeField]
     EnemyStatus enemyStatusScript;
     [SerializeField]
@@ -22,11 +21,12 @@ public class EnemyAction : MonoBehaviour
     int instanceBulletCount;
     [SerializeField]
     float intervalShotTime;
+    float copyIntervalShotTime;
     float worldSpeed;
     float destoryTimeCount;
     void Start()
     {
-        enemyStatusScript.SearchManagerObj();
+        Ini();
     }
 
     void Update()
@@ -60,8 +60,9 @@ public class EnemyAction : MonoBehaviour
                 {
                     instancerotation = Quaternion.EulerAngles(0, 0, -90);
                 }
-               GameObject obj = Instantiate(enemyBulletObj, transform.position, instancerotation);
+                GameObject obj = Instantiate(enemyBulletObj, transform.position, instancerotation);
                 obj.GetComponent<BulletStatus>().SetManagerObj(enemyStatusScript.GetTimeManager());
+                intervalShotTime = copyIntervalShotTime;
                 instanceBulletCount--;
             }
         }
@@ -88,5 +89,11 @@ public class EnemyAction : MonoBehaviour
             Debug.Log("時間が来ました");
             enemyStatusScript.SetDestroy();
         }
+    }
+
+    void Ini()
+    {
+        enemyStatusScript.SearchManagerObj();
+        copyIntervalShotTime = intervalShotTime;
     }
 }

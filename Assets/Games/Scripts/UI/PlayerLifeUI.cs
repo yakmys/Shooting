@@ -33,5 +33,6 @@ public class PlayerLifeUI : MonoBehaviour
     {
         int index = playerLifeList.Count - 1;
         Destroy(playerLifeList[index]);
+        playerLifeList.RemoveAt(index);
     }
 }

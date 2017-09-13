@@ -18,6 +18,7 @@ public class BackGroundManager : MonoBehaviour
     [SerializeField]
     float iniWidthPos;
     float iniPosY;
+
     /// <summary>
     /// 各背景画像の場所を整列
     /// </summary>

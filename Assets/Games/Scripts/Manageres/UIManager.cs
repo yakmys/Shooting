@@ -9,7 +9,6 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-
     [SerializeField]
     GameMaster gameMasterScript;
     [SerializeField]
@@ -19,6 +18,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     PlayerManager playerManagerScript;
     bool isStartUI = false;
+    [SerializeField]
+    ScoreUI scoreUIScript;
+
     void Start()
     {
         if (!gameMasterScript.GetIsGame())
@@ -57,5 +59,15 @@ public class UIManager : MonoBehaviour
     public void PlayerUISubtraction()
     {
         playerLifeUIScript.UISubtraction();
+    }
+
+    public void SetScore()
+    {
+        scoreUIScript.SetScore();
+    }
+
+    public int GetScore()
+    {
+        return scoreUIScript.GetScore();
     }
 }
