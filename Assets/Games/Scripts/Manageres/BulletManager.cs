@@ -51,6 +51,6 @@ public class BulletManager : MonoBehaviour
 
     void Interval()
     {
-        intervalBullet -= Time.deltaTime;
+        intervalBullet -= Time.deltaTime * timeManagerScript.GetSpeed();
     }
 }

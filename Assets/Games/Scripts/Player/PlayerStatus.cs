@@ -47,4 +47,5 @@ public class PlayerStatus : MonoBehaviour
         }
         return false;
     }
+
 }

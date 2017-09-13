@@ -18,6 +18,7 @@ public class StartUI : MonoBehaviour
     bool isStartUI;
     [SerializeField]
     float Timer;
+    bool isStart = true;
     void Update()
     {
         MoveAnimation();
@@ -25,7 +26,7 @@ public class StartUI : MonoBehaviour
 
     void MoveAnimation()
     {
-        if(uiManagerScript.GetIsStartUI())
+        if (uiManagerScript.GetIsStartUI())
         {
             CountDown();
         }
@@ -35,14 +36,15 @@ public class StartUI : MonoBehaviour
     {
         Timer -= Time.deltaTime;
         countDownText.text = Timer.ToString("F00");
-        if(Timer <= 1 && Timer >= 0)
+        if (Timer <= 1 && Timer >= 0)
         {
             countDownText.text = "START";
         }
-        else if(Timer <= 0)
+        else if (Timer <= 0 && isStart)
         {
             uiManagerScript.SetGamePlay(true);
             countDownText.enabled = false;
+            isStart = false;
         }
     }
 }

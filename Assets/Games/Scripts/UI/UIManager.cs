@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour {
 
     [SerializeField]
     GameMaster gameMasterScript;
+    [SerializeField]
+    EnemyManager enemyManagerScript;
     bool isStartUI = false;
     void Start()
     {
@@ -30,8 +32,15 @@ public class UIManager : MonoBehaviour {
         isStartUI = set;
     }
 
+    /// <summary>
+    ///　メインステージ上でのゲーム開始
+    /// </summary>
+    /// <param name="set"></param>
     public void SetGamePlay(bool set)
     {
+        Debug.Log("a");
         gameMasterScript.SetIsGame(set);
+        enemyManagerScript.SetIsInstance(true);
     }
+
 }

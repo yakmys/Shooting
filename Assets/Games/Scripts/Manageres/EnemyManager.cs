@@ -21,8 +21,10 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     InstanceClass instanceClassScript;
     int instanceClassListIndex;
-    bool isInstance = true;
-
+    bool isInstance = false;
+    [SerializeField]
+    int onStageEnemyCount;
+    bool isNextInstance;
     void Start()
     {
         readEnemyCSVScript.ReadStart();
@@ -64,5 +66,30 @@ public class EnemyManager : MonoBehaviour
     public bool GetIsPlay()
     {
         return gameMasterScript.GetIsGame();
+    }
+
+    public void SetCountAdd()
+    {
+        onStageEnemyCount++;
+    }
+
+    public void SetCount(int set)
+    {
+        onStageEnemyCount += set;
+    }
+
+    public void SetCountSubtraction()
+    {
+        onStageEnemyCount--;
+        if (onStageEnemyCount == 0 && !isInstance)
+        {
+            if(instanceClassListIndex != instanceClassList.Count)
+            isInstance = true;
+        }
+    }
+
+    public bool GetIsInstance()
+    {
+        return isInstance;
     }
 }

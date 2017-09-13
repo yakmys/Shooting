@@ -14,6 +14,6 @@ public class PlayerCollision : MonoBehaviour {
     CollisionManager collisihonManagerScript;
     void OnTriggerEnter2D(Collider2D collision)
     {
-        collisihonManagerScript.HitPlayer(collision.gameObject,gameObject);
+        collisihonManagerScript.HitPlayerEnter(collision.gameObject,gameObject);
     }
 }

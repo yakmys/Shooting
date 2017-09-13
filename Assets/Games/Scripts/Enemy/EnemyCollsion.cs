@@ -13,7 +13,14 @@ public class EnemyCollsion : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision)
     {
         enemyStatusScript.SearchManagerObj();
-       GameObject obj = enemyStatusScript.GetManagerObj();
-        obj.GetComponent<CollisionManager>().HitEnemy(collision.gameObject,gameObject);
+        GameObject obj = enemyStatusScript.GetManagerObj();
+        obj.GetComponent<CollisionManager>().HitEnemyEnter(collision.gameObject,gameObject);
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        enemyStatusScript.SearchManagerObj();
+        GameObject obj = enemyStatusScript.GetManagerObj();
+        obj.GetComponent<CollisionManager>().HitEnemyExit(collision.gameObject, gameObject);
     }
 }

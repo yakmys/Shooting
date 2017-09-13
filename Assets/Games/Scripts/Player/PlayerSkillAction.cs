@@ -7,29 +7,82 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class PlayerSkillAction : MonoBehaviour {
+using UnityEngine.UI;
+public class PlayerSkillAction : MonoBehaviour
+{
 
     [SerializeField]
     TimeManager timeManagerScript;
     [SerializeField]
     float lateTime;
-	
+    [SerializeField]
+    Slider timeGage;
+    [SerializeField]
+    float addValue;
+    [SerializeField]
+    GameMaster gameMasterScript;
+    [SerializeField]
+    float subtractionValue;
+    [SerializeField]
+    bool isSkill = true;
+    public enum SkillStatus
+    {
+        None,
+        Use,
+        NoUse
+    }
+    SkillStatus status = SkillStatus.NoUse;
     // Update is called once per frame
-	void Update () {
-        Skill();
-	}
+    void Update()
+    {
+        if (gameMasterScript.GetIsGame())
+        {
+            Skill();
+            ValueUpdate();
+        }
+    }
 
     void Skill()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && isSkill)
         {
             timeManagerScript.SetSpeed(lateTime);
+            status = SkillStatus.Use;
         }
 
-        if(Input.GetKeyUp(KeyCode.W))
+        if (Input.GetKeyUp(KeyCode.W))
         {
             timeManagerScript.SetDefaultSpeed();
+            status = SkillStatus.NoUse;
+        }
+    }
+
+    void ValueUpdate()
+    {
+        switch (status)
+        {
+            case SkillStatus.Use:
+                timeGage.value -= Time.deltaTime * subtractionValue;
+                ValueCheck();
+                break;
+            case SkillStatus.NoUse:
+                timeGage.value += Time.deltaTime * addValue;
+                ValueCheck();
+                break;
+        }
+    }
+
+    void ValueCheck()
+    {
+        if (timeGage.value <= 0)
+        {
+            status = SkillStatus.NoUse;
+            timeManagerScript.SetDefaultSpeed();
+            isSkill = false;
+        }
+        else if (timeGage.value >= 0.5f)
+        {
+            isSkill = true;
         }
     }
 }

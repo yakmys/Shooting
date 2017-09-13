@@ -31,21 +31,27 @@ public class EnemyInstance : MonoBehaviour
     /// </summary>
     public void InstanceEnemy()
     {
-        if (instanceInterval <= 0)
+        if (instanceInterval <= 0 && enemyManagerScript.GetIsInstance())
         {
             InstanceClass instanceclass = enemyManagerScript.GetInstanceEnemyList();
             Vector3 instancepos = instanceclass.GetPos();
             Instantiate(enemyObj, instancepos, Quaternion.identity);
             instanceInterval = copyInstanceInterval;
-            int getvalue = instanceclass.GetCount();
-            getvalue--;
-            instanceclass.SetCount(getvalue);
-            if (getvalue == 0)
-            {
-                enemyManagerScript.SetIsInstance(false);
-                enemyManagerScript.InsranceClassIndexAdd();
-            }
+            ValueChange(instanceclass);
         }
         instanceInterval -= Time.deltaTime;
+    }
+
+    void ValueChange(InstanceClass instanceclass)
+    {
+        int getvalue = instanceclass.GetCount();
+        getvalue--;
+        instanceclass.SetCount(getvalue);
+        enemyManagerScript.SetCountAdd();
+        if (getvalue == 0)
+        {
+            enemyManagerScript.SetIsInstance(false);
+            enemyManagerScript.InsranceClassIndexAdd();
+        }
     }
 }

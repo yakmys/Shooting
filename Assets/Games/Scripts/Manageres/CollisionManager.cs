@@ -14,21 +14,25 @@ public class CollisionManager : MonoBehaviour {
     string[] tagNames;
     [SerializeField]
     GameMaster gameMasterScript;
-
-    public void HitEnemy(GameObject collishonobj,GameObject enemyobj)
+    [SerializeField]
+    EnemyManager enemyManagerScript;
+    public void HitEnemyEnter(GameObject collishonobj,GameObject enemyobj)
     {
-        //エネミーの弾だっただった場合
+        //プレイヤーの弾だった場合
         if(collishonobj.tag == tagNames[3])
         {
             bool result = enemyobj.GetComponent<EnemyStatus>().DamageHp(1);
             if(result)
             {
+                enemyManagerScript.SetCountSubtraction();
                 DestoryObj(enemyobj);
             }
         }
+
+
     }
 
-    public void HitPlayer(GameObject obj,GameObject playerobj)
+    public void HitPlayerEnter(GameObject obj,GameObject playerobj)
     {
         //エネミーの弾だった場合
         if (obj.tag == tagNames[2])
@@ -44,5 +48,14 @@ public class CollisionManager : MonoBehaviour {
     void DestoryObj(GameObject obj)
     {
         Destroy(obj);
+    }
+
+    public void HitEnemyExit(GameObject collisionobj,GameObject enemyobj)
+    {
+        if (collisionobj.tag == tagNames[4])
+        {
+            enemyManagerScript.SetCountSubtraction();
+            DestoryObj(enemyobj);
+        }
     }
 }

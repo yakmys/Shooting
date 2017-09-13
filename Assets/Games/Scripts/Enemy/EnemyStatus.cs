@@ -16,9 +16,10 @@ public class EnemyStatus : MonoBehaviour
     float moveSpeed;
     [SerializeField]
     float destoryTime;
+    float countDestroyTime;
     GameObject ManagerObj;
-    [SerializeField]
     TimeManager timeManagerScript;
+    EnemyManager enemyManagerScript;   
     public void SetHp(int set)
     {
         hp = set;
@@ -64,6 +65,8 @@ public class EnemyStatus : MonoBehaviour
     {
         ManagerObj = GameObject.Find("Manageres");
         timeManagerScript = ManagerObj.GetComponent<TimeManager>();
+        enemyManagerScript = ManagerObj.GetComponent<EnemyManager>();
+
     }
     public GameObject GetManagerObj()
     {
@@ -73,5 +76,21 @@ public class EnemyStatus : MonoBehaviour
     public float GetWorldSpeed()
     {
         return timeManagerScript.GetSpeed();
+    }
+
+    public float GetDestroyTime()
+    {
+        return destoryTime;
+    }
+
+    public void SetDestroy()
+    {
+        enemyManagerScript.SetCountSubtraction();
+        Destroy(gameObject);
+    }
+    
+    public TimeManager GetTimeManager()
+    {
+        return timeManagerScript;
     }
 }

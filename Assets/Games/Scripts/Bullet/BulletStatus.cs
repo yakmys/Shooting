@@ -41,4 +41,5 @@ public class BulletStatus : MonoBehaviour {
     {
         timeManagerScript = manager;
     }
+
 }

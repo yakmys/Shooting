@@ -31,13 +31,13 @@ public class  TrackingBulletAction : MonoBehaviour{
 
     void Move()
     {
-
+        float worldspeed = bulletStatusScript.GetWorldTimeSpeed();
         if(noTrackingTime >= 0)
         {
             float speed = bulletStatusScript.GetSpeed();
             Vector3 pos = Vector3.zero;
             pos.x = 1;
-            transform.Translate(pos * speed * Time.deltaTime);
+            transform.Translate(pos * speed * Time.deltaTime * worldspeed);
             noTrackingTime -= Time.deltaTime;
         }
 
@@ -47,7 +47,7 @@ public class  TrackingBulletAction : MonoBehaviour{
             float speed = bulletStatusScript.GetSpeed();
             Vector3 pos = (playerObj.transform.position - transform.position).normalized;
             transform.rotation = Quaternion.FromToRotation(Vector3.up,pos);
-            transform.position += pos * speed * Time.deltaTime;
+            transform.position += pos * speed * Time.deltaTime * worldspeed;
             trackingTime -= Time.deltaTime;
         }
 
@@ -56,7 +56,7 @@ public class  TrackingBulletAction : MonoBehaviour{
         {
             float speed = bulletStatusScript.GetSpeed();
             Vector3 pos = (childObj.transform.position - transform.position).normalized;
-            transform.position += pos * speed * Time.deltaTime;
+            transform.position += pos * speed * Time.deltaTime * worldspeed;
         }
     }
 
