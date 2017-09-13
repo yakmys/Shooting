@@ -35,7 +35,7 @@ public class PlayerAction : MonoBehaviour {
             MouseAction();
             BulletAction();
         }
-	}
+    }
 
     void MouseAction()
     {

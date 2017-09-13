@@ -17,6 +17,8 @@ public class  TrackingBulletAction : MonoBehaviour{
     GameObject playerObj;
     [SerializeField]
     BulletStatus bulletStatusScript;
+    [SerializeField]
+    GameObject childObj;
     void Start()
     {
       playerObj = GameObject.Find("player");
@@ -29,6 +31,7 @@ public class  TrackingBulletAction : MonoBehaviour{
 
     void Move()
     {
+
         if(noTrackingTime >= 0)
         {
             float speed = bulletStatusScript.GetSpeed();
@@ -38,22 +41,22 @@ public class  TrackingBulletAction : MonoBehaviour{
             noTrackingTime -= Time.deltaTime;
         }
 
+        //追尾のアクション
         else if(noTrackingTime <= 0 && trackingTime >= 0)
         {
             float speed = bulletStatusScript.GetSpeed();
             Vector3 pos = (playerObj.transform.position - transform.position).normalized;
+            transform.rotation = Quaternion.FromToRotation(Vector3.up,pos);
             transform.position += pos * speed * Time.deltaTime;
             trackingTime -= Time.deltaTime;
         }
 
+        //追尾の終了アクション
         else
         {
             float speed = bulletStatusScript.GetSpeed();
-            Vector3 pos = transform.position;
-            pos.x--;
-            pos.y--;
-            Vector3 diff = (pos - transform.position).normalized;
-            transform.position += diff * Time.deltaTime * speed;
+            Vector3 pos = (childObj.transform.position - transform.position).normalized;
+            transform.position += pos * speed * Time.deltaTime;
         }
     }
 

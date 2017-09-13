@@ -16,6 +16,14 @@ public class GameMaster : MonoBehaviour
     ////////////////////
     [SerializeField]
     bool isGamePlay;
+    public enum GameStatus
+    {
+        None,
+        Clear,
+        GameOver
+    }
+    [SerializeField]
+    SceneMaster scenMasterScript;
     ////////////////////
     //変数宣言終了
     ////////////////////
@@ -29,5 +37,19 @@ public class GameMaster : MonoBehaviour
     public bool GetIsGame()
     {
         return isGamePlay;
+    }
+
+    public void GameResult(GameStatus status)
+    {
+        switch(status)
+        {
+            case GameStatus.Clear:
+                scenMasterScript.SelectStage(SceneMaster.SceneStage.Result);
+                break;
+
+            case GameStatus.GameOver:
+                scenMasterScript.SelectStage(SceneMaster.SceneStage.GameOver);
+                break;
+        }
     }
 }

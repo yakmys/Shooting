@@ -22,9 +22,11 @@ public class PlayerStatus : MonoBehaviour
         return hp;
     }
 
-    public void SetHp(int set)
+    public bool SetHp(int set)
     {
         hp -= set;
+        bool result = CheckHp();
+        return result;
     }
 
     public float GetMoveSpeed()
@@ -35,5 +37,14 @@ public class PlayerStatus : MonoBehaviour
     public void SetMoveSpeed(float set)
     {
         moveSpeed = set;
+    }
+
+    public bool CheckHp()
+    {
+        if(hp <= 0)
+        {
+            return true;
+        }
+        return false;
     }
 }

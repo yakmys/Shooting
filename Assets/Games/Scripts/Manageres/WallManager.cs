@@ -71,6 +71,7 @@ public class WallManager : MonoBehaviour
 
         else if (wallobjname == "Buttom")
         {
+            Debug.Log("hoge");
             SetWallButtom(false);
         }
     }

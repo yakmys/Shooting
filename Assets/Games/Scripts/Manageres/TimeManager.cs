@@ -12,6 +12,12 @@ public class TimeManager : MonoBehaviour {
 
     [SerializeField]
     float worldSpeed;
+    float copySpeed;
+
+    void Start()
+    {
+        copySpeed = worldSpeed;
+    }
 
     public void SetSpeed(float set)
     {
@@ -21,5 +27,10 @@ public class TimeManager : MonoBehaviour {
     public float GetSpeed()
     {
         return worldSpeed;
+    }
+
+    public void SetDefaultSpeed()
+    {
+        worldSpeed = copySpeed;
     }
 }

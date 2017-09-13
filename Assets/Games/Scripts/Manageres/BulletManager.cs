@@ -20,6 +20,8 @@ public class BulletManager : MonoBehaviour
     float copyIntervalBullet;
     [SerializeField]
     GameMaster gameMasterScript;
+    [SerializeField]
+    TimeManager timeManagerScript;
     ///////////////////////////////////
     //変数宣言終了
     ///////////////////////////////////
@@ -35,7 +37,8 @@ public class BulletManager : MonoBehaviour
         {
             if (intervalBullet <= 0)
             {
-                Instantiate(bulletObj, pos, Quaternion.identity);
+               GameObject obj = Instantiate(bulletObj, pos, Quaternion.identity);
+                obj.GetComponent<BulletStatus>().SetManagerObj(timeManagerScript);
                 intervalBullet = copyIntervalBullet;
             }
         }
