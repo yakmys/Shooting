@@ -19,6 +19,7 @@ public class StartUI : MonoBehaviour
     [SerializeField]
     float Timer;
     bool isStart = true;
+
     void Update()
     {
         MoveAnimation();

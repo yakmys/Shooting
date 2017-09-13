@@ -9,14 +9,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class InstanceClass {
+public class InstanceClass
+{
 
     [SerializeField]
     Vector3 instancePos;
     [SerializeField]
     int count;
 
-    public void SetInstanceClass(int setcount,Vector3 setpos)
+    public void SetInstanceClass(int setcount, Vector3 setpos)
     {
         count = setcount;
         instancePos = setpos;
@@ -34,6 +35,6 @@ public class InstanceClass {
 
     public Vector3 GetPos()
     {
-       return instancePos;
+        return instancePos;
     }
 }

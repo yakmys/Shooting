@@ -25,10 +25,12 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     int onStageEnemyCount;
     bool isNextInstance;
+    [SerializeField]
+    int sumEnemyCount = 0;
+
     void Start()
     {
-        readEnemyCSVScript.ReadStart();
-        instanceClassList = readEnemyCSVScript.GetDataList();
+        Ini();
     }
 
     // Update is called once per frame
@@ -58,6 +60,10 @@ public class EnemyManager : MonoBehaviour
         instanceClassListIndex++;
     }
 
+    /// <summary>
+    /// 現在のリストのインデックスを返す
+    /// </summary>
+    /// <returns></returns>
     public InstanceClass GetInstanceEnemyList()
     {
         return instanceClassList[instanceClassListIndex];
@@ -81,15 +87,40 @@ public class EnemyManager : MonoBehaviour
     public void SetCountSubtraction()
     {
         onStageEnemyCount--;
-        if (onStageEnemyCount == 0 && !isInstance)
+        sumEnemyCount--;
+        if (onStageEnemyCount == 0 && !isInstance && sumEnemyCount != 0)
         {
             if(instanceClassListIndex != instanceClassList.Count)
             isInstance = true;
+        }
+        else if(sumEnemyCount == 0)
+        {
+            gameMasterScript.GameResult(GameMaster.GameStatus.Clear);
         }
     }
 
     public bool GetIsInstance()
     {
         return isInstance;
+    }
+
+    public void IniSumEnemyCount()
+    {
+        for(int count =0;count < instanceClassList.Count;count++)
+        {
+            sumEnemyCount += instanceClassList[count].GetCount();
+        }
+    }
+
+    public int GetSumEnemyCount()
+    {
+        return sumEnemyCount;
+    }
+
+    void Ini()
+    {
+        readEnemyCSVScript.ReadStart();
+        instanceClassList = readEnemyCSVScript.GetDataList();
+        IniSumEnemyCount();
     }
 }

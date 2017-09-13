@@ -8,14 +8,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour {
+public class PlayerManager : MonoBehaviour
+{
 
     [SerializeField]
     GameMaster gameMasterScript;
     bool iniInstancePlayer;
+    [SerializeField]
+    PlayerStatus playerStatusScript;
     public bool GetIsGame()
     {
         return gameMasterScript.GetIsGame();
+    }
+
+    public int GetHp()
+    {
+        return playerStatusScript.GetHp();
     }
 
 }

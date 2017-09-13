@@ -12,6 +12,7 @@ public class PlayerCollision : MonoBehaviour {
 
     [SerializeField]
     CollisionManager collisihonManagerScript;
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         collisihonManagerScript.HitPlayerEnter(collision.gameObject,gameObject);

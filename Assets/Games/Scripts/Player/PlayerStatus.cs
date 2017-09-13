@@ -8,16 +8,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class PlayerStatus : MonoBehaviour
 {
 
     [SerializeField]
     private float moveSpeed;
     [SerializeField]
-    private float hp;
-
-    public float GetHp()
+    private int hp;
+    [SerializeField]
+    PlayerLifeUI playerLifeUIScript;
+    public int GetHp()
     {
         return hp;
     }
@@ -25,6 +25,7 @@ public class PlayerStatus : MonoBehaviour
     public bool SetHp(int set)
     {
         hp -= set;
+        playerLifeUIScript.UISubtraction();
         bool result = CheckHp();
         return result;
     }
@@ -41,7 +42,7 @@ public class PlayerStatus : MonoBehaviour
 
     public bool CheckHp()
     {
-        if(hp <= 0)
+        if (hp <= 0)
         {
             return true;
         }

@@ -8,7 +8,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackGroundManager : MonoBehaviour {
+public class BackGroundManager : MonoBehaviour
+{
 
     [SerializeField]
     GameMaster gameMasterScript;
@@ -17,15 +18,14 @@ public class BackGroundManager : MonoBehaviour {
     [SerializeField]
     float iniWidthPos;
     float iniPosY;
-    
     /// <summary>
     /// 各背景画像の場所を整列
     /// </summary>
     void Start()
     {
-        for(int count = 0; count < backGroundImgList.Count; ++count )
+        for (int count = 0; count < backGroundImgList.Count; ++count)
         {
-            if(count !=0)
+            if (count != 0)
             {
                 Vector3 pos = backGroundImgList[0].transform.position;
                 pos.x += iniWidthPos * count;
@@ -47,7 +47,7 @@ public class BackGroundManager : MonoBehaviour {
     public float LastPos()
     {
         float lastpos = 0.0f;
-        for(int count = 0;count < backGroundImgList.Count;++count)
+        for (int count = 0; count < backGroundImgList.Count; ++count)
         {
             float x = backGroundImgList[count].transform.position.x;
             if (x >= lastpos)
