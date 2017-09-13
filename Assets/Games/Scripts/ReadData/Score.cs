@@ -1,7 +1,7 @@
 ﻿////////////////////
 //製作者　名越大樹
 //制作日　9月13日
-//スコアに関するクラス
+//スコアのデータに関するクラス
 ////////////////////
 
 using System.Collections;
@@ -14,15 +14,19 @@ public class Score : MonoBehaviour {
 
     [SerializeField]
     string fileName;
+
     public string ReadData()
     {
-        StreamReader sr = new StreamReader(Application.dataPath + fileName);
+        StreamReader sr = new StreamReader(Application.dataPath + fileName,Encoding.GetEncoding("shift_jis"));
         string col = sr.ReadLine();
+        sr.Close();
         return col;
     }
 
-    public void WriteData()
+    public void WriteData(string data)
     {
         StreamWriter sr = new StreamWriter(Application.dataPath + fileName);
+        sr.Write(data);
+        sr.Close();
     }
 }

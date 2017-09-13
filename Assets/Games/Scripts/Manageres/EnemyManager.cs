@@ -20,6 +20,10 @@ public class EnemyManager : MonoBehaviour
     List<InstanceClass> instanceClassList;
     [SerializeField]
     InstanceClass instanceClassScript;
+    [SerializeField]
+    Score scoreScript;
+    [SerializeField]
+    UIManager uiManagerScript;
     int instanceClassListIndex;
     bool isInstance = false;
     [SerializeField]
@@ -98,6 +102,7 @@ public class EnemyManager : MonoBehaviour
         }
         else if(sumEnemyCount == 0)
         {
+            scoreScript.WriteData(uiManagerScript.GetScore().ToString());
             gameMasterScript.GameResult(GameMaster.GameStatus.Clear);
         }
     }
