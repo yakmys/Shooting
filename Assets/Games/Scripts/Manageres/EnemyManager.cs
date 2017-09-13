@@ -84,6 +84,9 @@ public class EnemyManager : MonoBehaviour
         onStageEnemyCount += set;
     }
 
+    /// <summary>
+    ///　エネミーを倒した時の処理 
+    /// </summary>
     public void SetCountSubtraction()
     {
         onStageEnemyCount--;

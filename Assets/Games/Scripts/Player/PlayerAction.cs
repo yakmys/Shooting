@@ -8,7 +8,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAction : MonoBehaviour {
+public class PlayerAction : MonoBehaviour
+{
 
     [SerializeField]
     WallManager wallManagerScript;
@@ -28,23 +29,24 @@ public class PlayerAction : MonoBehaviour {
     float checkvalue;
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
         if (playerManagerScript.GetIsGame())
         {
             MouseAction();
             BulletAction();
+            TimeAction();
         }
     }
 
     void MouseAction()
     {
-       if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             IsMove = true;
         }
 
-       else if(Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0))
         {
             IsMove = false;
         }
@@ -68,7 +70,7 @@ public class PlayerAction : MonoBehaviour {
         movepos = WallCollisionCheck(movepos);
         transform.position += movepos * playerStatusScript.GetMoveSpeed() * Time.deltaTime;
     }
-    
+
     /// <summary>
     /// マウスの位置によって動く方向を指定
     /// </summary>
@@ -77,12 +79,12 @@ public class PlayerAction : MonoBehaviour {
     Vector3 MousePosionCheck(Vector3 mousepos)
     {
         Vector3 centerpos = centerPos.transform.position;
-        if(mousepos.x >= centerpos.x + centerPosWidth)
+        if (mousepos.x >= centerpos.x + centerPosWidth)
         {
             mousepos.x = 1;
         }
 
-        else if(mousepos.x <= centerpos.x - centerPosWidth)
+        else if (mousepos.x <= centerpos.x - centerPosWidth)
         {
             mousepos.x = -1;
         }
@@ -92,12 +94,12 @@ public class PlayerAction : MonoBehaviour {
             mousepos.x = 0;
         }
 
-        if(mousepos.y >= centerPos.transform.position.y + centerPosHeith)
+        if (mousepos.y >= centerPos.transform.position.y + centerPosHeith)
         {
             mousepos.y = 1;
         }
 
-        else if(mousepos.y <= centerPos.transform.position.y - centerPosHeith)
+        else if (mousepos.y <= centerPos.transform.position.y - centerPosHeith)
         {
             mousepos.y = -1;
         }
@@ -125,14 +127,14 @@ public class PlayerAction : MonoBehaviour {
     /// <returns></returns>
     Vector3 WallCollisionCheck(Vector3 pos)
     {
-        if(pos.x == -1)//左側の壁の当たり判定
+        if (pos.x == -1)//左側の壁の当たり判定
         {
-            if(wallManagerScript.GetWallLeft())
+            if (wallManagerScript.GetWallLeft())
             {
                 pos.x = 0;
             }
         }
-        else if(pos.x == 1)//右側の壁の当たり判定
+        else if (pos.x == 1)//右側の壁の当たり判定
         {
             if (wallManagerScript.GetWallRight())
             {
@@ -156,5 +158,15 @@ public class PlayerAction : MonoBehaviour {
         }
 
         return pos;
+    }
+
+    void TimeAction()
+    {
+        if (!playerStatusScript.GetIsCollision())
+        {
+            float time = playerStatusScript.GetCollisitonTime();
+            time -= Time.deltaTime;
+            playerStatusScript.SetCollisionTime(time);
+        }
     }
 }

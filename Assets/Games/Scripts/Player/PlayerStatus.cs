@@ -17,6 +17,16 @@ public class PlayerStatus : MonoBehaviour
     private int hp;
     [SerializeField]
     PlayerLifeUI playerLifeUIScript;
+    [SerializeField]
+    float collisionTime;
+    float copycollisonTime;
+    bool isCollision = true;
+
+    void Start()
+    {
+        copycollisonTime = collisionTime;
+    }
+
     public int GetHp()
     {
         return hp;
@@ -27,7 +37,23 @@ public class PlayerStatus : MonoBehaviour
         hp -= set;
         playerLifeUIScript.UISubtraction();
         bool result = CheckHp();
+        collisionTime = copycollisonTime;
+        SetColliderEnabled(false);
         return result;
+    }
+
+    public float GetCollisitonTime()
+    {
+        return collisionTime;
+    }
+
+    public void SetCollisionTime(float set)
+    {
+        collisionTime = set;
+        if(collisionTime <= 0)
+        {            
+            SetColliderEnabled(true);
+        }
     }
 
     public float GetMoveSpeed()
@@ -49,4 +75,22 @@ public class PlayerStatus : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// 当たり判定を一定の間消す
+    /// </summary>
+    /// <param name="set"></param>
+    void SetColliderEnabled(bool set)
+    {
+        isCollision = set;
+        GetComponent<BoxCollider2D>().enabled = set;
+    }
+
+    /// <summary>
+    /// 当たり判定があるかどうかとってくる
+    /// </summary>
+    /// <returns></returns>
+    public bool GetIsCollision()
+    {
+        return isCollision;
+    }
 }
