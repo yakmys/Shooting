@@ -20,10 +20,13 @@ public class GameMaster : MonoBehaviour
     {
         None,
         Clear,
-        GameOver
+        GameOver,
+        Result2
     }
     [SerializeField]
     SceneMaster scenMasterScript;
+    [SerializeField]
+    ReadEnemyCSV readEnemyCsvScript;//CSVが読み込まれなかったよう
     ////////////////////
     //変数宣言終了
     ////////////////////
@@ -41,10 +44,13 @@ public class GameMaster : MonoBehaviour
 
     public void GameResult(GameStatus status)
     {
-        switch(status)
+        switch (status)
         {
             case GameStatus.Clear:
                 scenMasterScript.SelectStage(SceneMaster.SceneStage.Result);
+                break;
+            case GameStatus.Result2:
+                scenMasterScript.SelectStage(SceneMaster.SceneStage.Result2);
                 break;
 
             case GameStatus.GameOver:

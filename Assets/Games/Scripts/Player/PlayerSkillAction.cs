@@ -44,13 +44,13 @@ public class PlayerSkillAction : MonoBehaviour
 
     void Skill()
     {
-        if (Input.GetKeyDown(KeyCode.W) && isSkill)
+        if (Input.touchCount == 2 && isSkill)
         {
             timeManagerScript.SetSpeed(lateTime);
             status = SkillStatus.Use;
         }
 
-        if (Input.GetKeyUp(KeyCode.W))
+        if (Input.touchCount != 2)
         {
             timeManagerScript.SetDefaultSpeed();
             status = SkillStatus.NoUse;

@@ -26,7 +26,8 @@ public class  TrackingBulletAction : MonoBehaviour{
 
     void Update()
     {
-        Move();    
+        Move();
+        Timer();
     }
 
     void Move()
@@ -60,4 +61,8 @@ public class  TrackingBulletAction : MonoBehaviour{
         }
     }
 
+    void Timer()
+    {
+        bulletStatusScript.DestroyTimeSubtraction();
+    }
 }

@@ -17,10 +17,10 @@ public class EnemyAction2 : MonoBehaviour
     int bulletCount;//一度にどれだけ出すか
     [SerializeField]
     int bulletInstanceCount; //何回繰り返すか
+    [SerializeField]
     float instanceBulletInterval;
     float copyInstanceBulletInterval;
     bool isBulletInstance = false;
-    float movePosXValue;
     float movePosYValue;
     [SerializeField]
     GameObject bulletObj;
@@ -47,10 +47,12 @@ public class EnemyAction2 : MonoBehaviour
     void Move()
     {
         Vector3 pos = Vector3.zero;
-        pos.y = Mathf.Cos(movePosYValue);
-        pos.x = Time.deltaTime * enemyStatusScript.GetWorldSpeed() * enemyStatusScript.GetWorldSpeed();
+        float worldspeed = enemyStatusScript.GetWorldSpeed();
+        pos.y = Mathf.Cos(movePosYValue) * worldspeed;
+        pos.x = Time.deltaTime * -worldspeed * enemyStatusScript.GetWorldSpeed() * 2;
         transform.Translate(pos);
-        movePosYValue += 0.1f;
+        movePosYValue += 0.15f * worldspeed;
+
     }
 
     void Shot()
@@ -61,13 +63,14 @@ public class EnemyAction2 : MonoBehaviour
             {
                 float z = 0.0f;
                 float angle = 1.0f;
-                for (int count = 0; count <= bulletCount; ++count)
-                {
-                    z = Mathf.Sin(angle);
-                    Quaternion instancerotation = Quaternion.identity;
-                    instancerotation.z = z;
-                    Instantiate(bulletObj, transform.position, instancerotation);
-                }
+                z = Mathf.Sin(angle);
+                Quaternion instancerotation = Quaternion.identity;
+                instancerotation.z = z;
+                GameObject obj = Instantiate(bulletObj, transform.position, instancerotation);
+                GameObject player = enemyStatusScript.GetPlayerObj();
+                Vector3 vec = (player.transform.position - transform.position).normalized;
+                obj.GetComponent<EnemyBulletLineMove>().Ini(vec);
+                obj.GetComponent<BulletStatus>().SetManagerObj(enemyStatusScript.GetTimeManager());
                 bulletInstanceCount--;
                 isBulletInstance = false;
                 instanceBulletInterval = copyInstanceBulletInterval;
@@ -78,5 +81,9 @@ public class EnemyAction2 : MonoBehaviour
     void Timer()
     {
         instanceBulletInterval -= Time.deltaTime;
+        if (instanceBulletInterval <= 0)
+        {
+            isBulletInstance = true;
+        }
     }
 }

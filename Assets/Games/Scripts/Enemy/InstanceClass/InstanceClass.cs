@@ -23,7 +23,6 @@ public class InstanceClass
         count = setcount;
         instancePos = setpos;
         enemyNumber = enemynumber;
-        Debug.Log(enemynumber);
     }
 
     public int GetCount()

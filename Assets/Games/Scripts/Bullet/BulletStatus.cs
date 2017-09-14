@@ -17,6 +17,7 @@ public class BulletStatus : MonoBehaviour {
     GameObject managerObj;
     [SerializeField]
     TimeManager timeManagerScript;
+
     public void SetSpeed(float set)
     {
         moveSpeed = set;
@@ -27,9 +28,14 @@ public class BulletStatus : MonoBehaviour {
         return moveSpeed;
     }
 
-    public void SetDestroyTime()
+    public void SetDestroyTime(float set)
     {
-        Destroy(gameObject,destoryTime);
+        destoryTime = set;
+    }
+
+    public float GetDestroyTime()
+    {
+        return destoryTime;
     }
 
     public float GetWorldTimeSpeed()
@@ -40,6 +46,19 @@ public class BulletStatus : MonoBehaviour {
     public void SetManagerObj(TimeManager manager)
     {
         timeManagerScript = manager;
+    }
+
+    public TimeManager GetManager()
+    {
+        return timeManagerScript;
+    }
+    public void DestroyTimeSubtraction()
+    {
+        destoryTime -= Time.deltaTime * GetWorldTimeSpeed();
+        if (destoryTime <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }

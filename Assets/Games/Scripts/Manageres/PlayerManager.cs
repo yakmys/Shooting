@@ -16,6 +16,8 @@ public class PlayerManager : MonoBehaviour
     bool iniInstancePlayer;
     [SerializeField]
     PlayerStatus playerStatusScript;
+    [SerializeField]
+    GameObject playerObj;
     public bool GetIsGame()
     {
         return gameMasterScript.GetIsGame();
@@ -26,4 +28,8 @@ public class PlayerManager : MonoBehaviour
         return playerStatusScript.GetHp();
     }
 
+    public GameObject GetPlayerObj()
+    {
+        return playerObj;
+    }
 }

@@ -41,12 +41,12 @@ public class PlayerAction : MonoBehaviour
 
     void MouseAction()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.touchCount == 1 || Input.touchCount == 2)
         {
             IsMove = true;
         }
 
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.touchCount == 0)
         {
             IsMove = false;
         }
@@ -64,13 +64,29 @@ public class PlayerAction : MonoBehaviour
 
     void Move()
     {
-        Vector3 inputmousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 inputmousepos = Vector3.zero;
+        if (Input.touchCount == 2)
+        {
+            inputmousepos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
+//            for (int count = 0; count < Input.touchCount; ++count)
+//            {
+//                Vector3 pos = Camera.main.ScreenToWorldPoint(Input.touches[count].position);
+//                if (centerPos.transform.position.x >= pos.x)
+//                {
+//                    inputmousepos =pos;
+//                    break;
+//                }
+//            }
+        }
+        else
+        {
+            inputmousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
         inputmousepos.z = 0;
         Vector3 movepos = MousePosionCheck(inputmousepos);
         movepos = WallCollisionCheck(movepos);
         transform.position += movepos * playerStatusScript.GetMoveSpeed() * Time.deltaTime;
     }
-
     /// <summary>
     /// マウスの位置によって動く方向を指定
     /// </summary>

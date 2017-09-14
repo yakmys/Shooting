@@ -16,7 +16,8 @@ public class SceneMaster : MonoBehaviour
         Title,
         Main,
         GameOver,
-        Result
+        Result,
+        Result2
     }
 
     /// <summary>
@@ -37,6 +38,9 @@ public class SceneMaster : MonoBehaviour
 
             case SceneStage.Result:
                 SceneManager.LoadScene("Result");
+                break;
+            case SceneStage.Result2:
+                SceneManager.LoadScene("Result2");
                 break;
 
             case SceneStage.GameOver:

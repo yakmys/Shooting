@@ -10,13 +10,12 @@ public class SocketClass : MonoBehaviour
     public void Bind(ref Socket sock, IPEndPoint ep)
     {
         sock.Bind(ep);
-        sock.Listen(10);
+        sock.Listen(100);
         Debug.Log("バインド完了");
     }
 
     public Socket Accept(ref Socket sock)
     {
-        sock.Accept();
         Socket listen = sock.Accept();
         Debug.Log("アクセプト完了");
         return listen;
@@ -41,7 +40,7 @@ public class SocketClass : MonoBehaviour
 
     public void Connect(ref Socket sock,IPAddress ip,int port)
     {
-        while (sock.Connected) {
+        while (!sock.Connected) {
             sock.Connect(ip, port);
         }
         Debug.Log("サーバーに接続完了");

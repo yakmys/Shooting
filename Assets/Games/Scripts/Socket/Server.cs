@@ -33,6 +33,9 @@ public class Server : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        ipAddress = IPAddress.Parse(serverIPAdress);
+        sock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        endPoint = new IPEndPoint(ipAddress,portNumber);
         Thread ini = new Thread(Ini);
         ini.Start();
     }
@@ -48,15 +51,12 @@ public class Server : MonoBehaviour
 
     void Ini()
     {
-        Debug.Log("aaa");
-        ipAddress = IPAddress.Parse(serverIPAdress);
-        endPoint = new IPEndPoint(ipAddress, portNumber);
-        sock = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Tcp);
         Wait();
     }
 
     void Wait()
     {
+        Debug.Log("aaa");
         socketClassScript.Bind(ref sock, endPoint);
         Socket listen = socketClassScript.Accept(ref sock);
         Thread next = new Thread(Wait);

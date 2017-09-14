@@ -12,47 +12,40 @@ using System.Text;
 using System;
 public class ReadEnemyCSV : MonoBehaviour
 {
-
+    [SerializeField]
+    bool isReadCsv;
+    [SerializeField]
+    List<InstanceClass> instanceClassListDebugVer = new List<InstanceClass>();
     [SerializeField]
     string fileName;
     List<InstanceClass> instanceClassList = new List<InstanceClass>();
     public void ReadStart()
     {
-        StreamReader sr = new StreamReader(Application.dataPath + fileName, Encoding.GetEncoding("Shift_JIS"));
-        int count = 0;
-        while(sr.Peek() > -1)
+        if (isReadCsv)
         {
-            string col = sr.ReadLine();
-            string[] cols = col.Split(',');
-            if(count !=0)
+            StreamReader sr = new StreamReader(Application.dataPath + fileName, Encoding.GetEncoding("Shift_JIS"));
+            Debug.Log(sr);
+            int count = 0;
+            while (sr.Peek() > -1)
             {
-                int castcount = int.Parse(cols[0].ToString());
-                int castenemynumber = int.Parse(cols[4].ToString());
-                Vector3 pos = Vector3.zero;
-                pos = ParsePos(pos, cols);
-                InstanceClass instanceclass = new InstanceClass();
-                instanceclass.SetInstanceClass(castcount, pos,castenemynumber);
-                instanceClassList.Add(instanceclass);
+                string col = sr.ReadLine();
+                string[] cols = col.Split(',');
+                if (count != 0)
+                {
+                    int castcount = int.Parse(cols[0].ToString());
+                    int castenemynumber = int.Parse(cols[4].ToString());
+                    Vector3 pos = Vector3.zero;
+                    pos = ParsePos(pos, cols);
+                    InstanceClass instanceclass = new InstanceClass();
+                    instanceclass.SetInstanceClass(castcount, pos, castenemynumber);
+                    instanceClassList.Add(instanceclass);
+                }
+                count++;
             }
-            count++;
+            Debug.Log(sr + "End");
+            sr.ReadToEnd();
         }
-        sr.ReadToEnd();
-//        Debug.Log(str);
-//        for (int count = 0; count < str.Length; count++)
-//        {
-//            string[] cols = str.ToString().Split(',');
-//            if (count != 0)
-//            {
-//                int castcount = int.Parse(cols[0].ToString());
-//                Debug.Log(castcount);
-//                //                            Vector3 pos = Vector3.zero;
-//                //                            pos = ParsePos(pos, cols);
-//                //                            InstanceClass instanceclass = new InstanceClass();
-//                //                            instanceclass.SetInstanceClass(castcount, pos);
-//                //                            instanceClassList.Add(instanceclass);
-//                //                            Debug.Log(str.Length);
-//            }
-//        }
+        
     }
 
     /// <summary>
@@ -87,5 +80,15 @@ public class ReadEnemyCSV : MonoBehaviour
     public List<InstanceClass> GetDataList()
     {
         return instanceClassList;
+    }
+
+    public List<InstanceClass> GetDataDebugList()
+    {
+        return instanceClassListDebugVer;
+    }
+
+    public bool GetIsReadCSV()
+    {
+        return isReadCsv;
     }
 }

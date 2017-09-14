@@ -92,4 +92,9 @@ public class EnemyStatus : MonoBehaviour
     {
         return timeManagerScript;
     }
+
+    public GameObject GetPlayerObj()
+    {
+        return enemyManagerScript.GetPlayerObj();
+    }
 }

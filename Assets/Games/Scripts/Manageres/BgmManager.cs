@@ -7,7 +7,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BgmManager : MonoBehaviour {
+public class BgmManager : MonoBehaviour
+{
 
     [SerializeField]
     AudioSource audioSource;
@@ -16,7 +17,6 @@ public class BgmManager : MonoBehaviour {
 
     public void StartBgm(int number)
     {
-        Debug.Log("BGMSTART");
         audioSource.clip = bgmArray[number];
         audioSource.Play();
     }

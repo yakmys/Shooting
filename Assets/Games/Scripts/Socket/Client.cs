@@ -16,19 +16,15 @@ public class Client : MonoBehaviour {
     IPAddress ipAddress;
     IPEndPoint ipEndPoint;
     Socket sock;
-    string message;
-	// Use this for initialization
-	void Start () {
-        Thread start = new Thread(Ini);
-        start.Start();
-	}
-	
+    string message;	
 
-    public void ThreadIni()
+    public void ThreadIni(string score)
     {
+        message = score;
         Thread ini = new Thread(Ini);
         ini.Start();
     }
+
     public void ThreadSendMessage(string score)
     {
         message = score;
@@ -39,7 +35,9 @@ public class Client : MonoBehaviour {
     {
         ipAddress = IPAddress.Parse(serverIp);
         ipEndPoint = new IPEndPoint(ipAddress,portNumber);
-        sock = new Socket(AddressFamily.InterNetwork,SocketType.Dgram,ProtocolType.Tcp);
+        sock = new Socket(AddressFamily.InterNetwork,SocketType.Stream,ProtocolType.Tcp);
+        Debug.Log("初期化完了");
+        SendMessage();
     }
 
     public void SendMessage()

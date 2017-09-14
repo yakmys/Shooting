@@ -20,6 +20,6 @@ public class ResultScoreUI : MonoBehaviour {
     {
         string data = scoreScript.ReadData();
         clientScript.ThreadSendMessage(data);
-        ScoreText.text = "今回倒した敵の数は = " + data;
+        ScoreText.text = "今回倒した敵の数は = <i><b><color='red'>" + data +"</color></b></i>";
     }
 }

@@ -24,6 +24,8 @@ public class EnemyManager : MonoBehaviour
     Score scoreScript;
     [SerializeField]
     UIManager uiManagerScript;
+    [SerializeField]
+    PlayerManager playerManagerScript;
     int instanceClassListIndex;
     bool isInstance = false;
     [SerializeField]
@@ -31,7 +33,8 @@ public class EnemyManager : MonoBehaviour
     bool isNextInstance;
     [SerializeField]
     int sumEnemyCount = 0;
-
+    [SerializeField]
+    ScoreManager scoreManagerScript;
     void Start()
     {
         Ini();
@@ -48,9 +51,9 @@ public class EnemyManager : MonoBehaviour
     /// </summary>
     void InstanceCall()
     {
-        int instancenumber = instanceClassList[instanceClassListIndex].GetEnemyNumber();
         if (isInstance)
         {
+            int instancenumber = instanceClassList[instanceClassListIndex].GetEnemyNumber();
             enemyInstanceScript.InstanceEnemy(instancenumber);
         }
     }
@@ -103,8 +106,16 @@ public class EnemyManager : MonoBehaviour
         }
         else if(sumEnemyCount == 0)
         {
-            scoreScript.WriteData(uiManagerScript.GetScore().ToString());
-            gameMasterScript.GameResult(GameMaster.GameStatus.Clear);
+            if (readEnemyCSVScript.GetIsReadCSV())
+            {
+                scoreScript.WriteData(uiManagerScript.GetScore().ToString());
+                gameMasterScript.GameResult(GameMaster.GameStatus.Clear);
+            }
+            else
+            {
+                scoreManagerScript.SetScore(uiManagerScript.GetScore().ToString());
+                gameMasterScript.GameResult(GameMaster.GameStatus.Result2);
+            }
         }
     }
 
@@ -129,7 +140,19 @@ public class EnemyManager : MonoBehaviour
     void Ini()
     {
         readEnemyCSVScript.ReadStart();
-        instanceClassList = readEnemyCSVScript.GetDataList();
+        if (readEnemyCSVScript.GetIsReadCSV())
+        {
+            instanceClassList = readEnemyCSVScript.GetDataList();
+        }
+        else
+        {
+            instanceClassList = readEnemyCSVScript.GetDataDebugList();
+        }
         IniSumEnemyCount();
+    }
+
+    public GameObject GetPlayerObj()
+    {
+       return playerManagerScript.GetPlayerObj();
     }
 }

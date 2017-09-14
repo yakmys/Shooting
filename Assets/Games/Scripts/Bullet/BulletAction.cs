@@ -16,10 +16,6 @@ public class BulletAction : MonoBehaviour
     [SerializeField]
     TimeManager timeManagerScript;
 
-    void Start()
-    {
-        bulletStatusScript.SetDestroyTime();
-    }
 
     // Update is called once per frame
     void Update()
