@@ -43,4 +43,9 @@ public class BackGroundStatus : MonoBehaviour {
     {
        return backGroundManagerScript.LastPos();
     }
+
+    public float GetWorldTimeSpeed()
+    {
+        return backGroundManagerScript.GetWorldTimeSpeed();
+    }
 }

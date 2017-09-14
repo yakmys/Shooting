@@ -43,6 +43,7 @@ public class StartUI : MonoBehaviour
         }
         else if (Timer <= 0 && isStart)
         {
+            
             uiManagerScript.SetGamePlay(true);
             countDownText.enabled = false;
             isStart = false;

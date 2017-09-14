@@ -10,7 +10,8 @@ using UnityEngine;
 
 public class BackGroundManager : MonoBehaviour
 {
-
+    [SerializeField]
+    TimeManager timeManagerScript;
     [SerializeField]
     GameMaster gameMasterScript;
     [SerializeField]
@@ -47,7 +48,7 @@ public class BackGroundManager : MonoBehaviour
     /// <returns></returns>
     public float LastPos()
     {
-        float lastpos = 0.0f;
+        float lastpos = 0.0f;//変数の初期化
         for (int count = 0; count < backGroundImgList.Count; ++count)
         {
             float x = backGroundImgList[count].transform.position.x;
@@ -58,4 +59,8 @@ public class BackGroundManager : MonoBehaviour
         return lastpos;
     }
 
+    public float GetWorldTimeSpeed()
+    {
+        return timeManagerScript.GetSpeed();
+    }
 }

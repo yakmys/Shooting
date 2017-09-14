@@ -10,6 +10,8 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
+    BgmManager bgmManagerScript;
+    [SerializeField]
     GameMaster gameMasterScript;
     [SerializeField]
     EnemyManager enemyManagerScript;
@@ -47,6 +49,7 @@ public class UIManager : MonoBehaviour
     /// <param name="set"></param>
     public void SetGamePlay(bool set)
     {
+        bgmManagerScript.StartBgm(1);
         gameMasterScript.SetIsGame(set);
         enemyManagerScript.SetIsInstance(true);
     }

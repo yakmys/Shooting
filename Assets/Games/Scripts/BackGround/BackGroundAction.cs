@@ -22,8 +22,9 @@ public class BackGroundAction : MonoBehaviour {
     void Move()
     {
         float speed = backGroundStatusScript.GetMoveSpeed();
+        float worldspeed = backGroundStatusScript.GetWorldTimeSpeed();
         Vector3 pos = Vector3.zero;
-        pos.x = -speed * Time.deltaTime;
+        pos.x = -speed * Time.deltaTime * worldspeed;
         transform.Translate(pos);
     }
 

@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿//////////////////////
+//製作者　名越大樹
+//制作日　9月13日
+//サーバー関係のクラス
+//////////////////////
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
