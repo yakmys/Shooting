@@ -86,7 +86,6 @@ public class EnemyAction : MonoBehaviour
         destoryTimeCount += Time.deltaTime * worldSpeed;
         if (time <= destoryTimeCount)
         {
-            Debug.Log("時間が来ました");
             enemyStatusScript.SetDestroy();
         }
     }

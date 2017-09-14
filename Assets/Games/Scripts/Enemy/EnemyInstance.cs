@@ -16,7 +16,7 @@ public class EnemyInstance : MonoBehaviour
     [SerializeField]
     InstanceClass instanceClass;
     [SerializeField]
-    GameObject enemyObj;
+    GameObject[] enemyObj;
     [SerializeField]
     float instanceInterval;
     float copyInstanceInterval;
@@ -29,13 +29,13 @@ public class EnemyInstance : MonoBehaviour
     /// <summary>
     /// エネミーを生成
     /// </summary>
-    public void InstanceEnemy()
+    public void InstanceEnemy(int number)
     {
         if (instanceInterval <= 0 && enemyManagerScript.GetIsInstance())
         {
             InstanceClass instanceclass = enemyManagerScript.GetInstanceEnemyList();
             Vector3 instancepos = instanceclass.GetPos();
-            Instantiate(enemyObj, instancepos, Quaternion.identity);
+            Instantiate(enemyObj[number], instancepos, Quaternion.identity);
             instanceInterval = copyInstanceInterval;
             ValueChange(instanceclass);
         }

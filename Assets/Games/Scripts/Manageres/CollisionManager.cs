@@ -20,6 +20,8 @@ public class CollisionManager : MonoBehaviour {
     UIManager uiManagerScript;
     [SerializeField]
     EffectManager effectManagerScript;
+    [SerializeField]
+    SeManager seManagerScript;
 
     /// <summary>
     /// エネミーがほかのオブジェクトと衝突したときの関数
@@ -32,6 +34,7 @@ public class CollisionManager : MonoBehaviour {
         if(collishonobj.tag == tagNames[3])
         {
             bool result = enemyobj.GetComponent<EnemyStatus>().DamageHp(1);
+            seManagerScript.SeStart(1);
             if(result)
             {
                 uiManagerScript.SetScore();
@@ -55,6 +58,7 @@ public class CollisionManager : MonoBehaviour {
         if (obj.tag == tagNames[2])
         {
             bool result = playerobj.GetComponent<PlayerStatus>().SetHp(1);
+            seManagerScript.SeStart(0);
             effectManagerScript.InstanceEffect(0,playerobj.transform.position);
             if(result)
             {

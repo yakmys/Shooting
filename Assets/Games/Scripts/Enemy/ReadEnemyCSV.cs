@@ -27,10 +27,11 @@ public class ReadEnemyCSV : MonoBehaviour
             if(count !=0)
             {
                 int castcount = int.Parse(cols[0].ToString());
+                int castenemynumber = int.Parse(cols[4].ToString());
                 Vector3 pos = Vector3.zero;
                 pos = ParsePos(pos, cols);
                 InstanceClass instanceclass = new InstanceClass();
-                instanceclass.SetInstanceClass(castcount, pos);
+                instanceclass.SetInstanceClass(castcount, pos,castenemynumber);
                 instanceClassList.Add(instanceclass);
             }
             count++;

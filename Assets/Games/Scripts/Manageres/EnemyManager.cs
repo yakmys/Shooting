@@ -48,9 +48,10 @@ public class EnemyManager : MonoBehaviour
     /// </summary>
     void InstanceCall()
     {
+        int instancenumber = instanceClassList[instanceClassListIndex].GetEnemyNumber();
         if (isInstance)
         {
-            enemyInstanceScript.InstanceEnemy();
+            enemyInstanceScript.InstanceEnemy(instancenumber);
         }
     }
 

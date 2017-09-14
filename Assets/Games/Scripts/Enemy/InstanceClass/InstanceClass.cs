@@ -16,11 +16,14 @@ public class InstanceClass
     Vector3 instancePos;
     [SerializeField]
     int count;
-
-    public void SetInstanceClass(int setcount, Vector3 setpos)
+    [SerializeField]
+    int enemyNumber;
+    public void SetInstanceClass(int setcount, Vector3 setpos,int enemynumber)
     {
         count = setcount;
         instancePos = setpos;
+        enemyNumber = enemynumber;
+        Debug.Log(enemynumber);
     }
 
     public int GetCount()
@@ -36,5 +39,15 @@ public class InstanceClass
     public Vector3 GetPos()
     {
         return instancePos;
+    }
+
+    public int GetEnemyNumber()
+    {
+        return enemyNumber;
+    }
+
+    public void SetEnemyNumber(int set)
+    {
+        enemyNumber = set;
     }
 }

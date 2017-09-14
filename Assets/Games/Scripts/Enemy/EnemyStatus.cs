@@ -66,7 +66,6 @@ public class EnemyStatus : MonoBehaviour
         ManagerObj = GameObject.Find("Manageres");
         timeManagerScript = ManagerObj.GetComponent<TimeManager>();
         enemyManagerScript = ManagerObj.GetComponent<EnemyManager>();
-
     }
     public GameObject GetManagerObj()
     {
