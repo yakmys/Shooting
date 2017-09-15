@@ -21,18 +21,24 @@ public class PlayerLifeUI : MonoBehaviour
     public void SetLife(int set)
     {
         Vector3 pos = Setpos.transform.position;
-        for (int count = 0; count < set; count++)
+        if (playerLifeList.Count > 0)
         {
-            GameObject obj = Instantiate(playerUIObj, pos, Quaternion.identity);
-            playerLifeList.Add(obj);
-            pos.x++;
+            for (int count = 0; count < set; count++)
+            {
+                GameObject obj = Instantiate(playerUIObj, pos, Quaternion.identity);
+                playerLifeList.Add(obj);
+                pos.x++;
+            }
         }
     }
 
     public void UISubtraction()
     {
-        int index = playerLifeList.Count - 1;
-        Destroy(playerLifeList[index]);
-        playerLifeList.RemoveAt(index);
+        if (playerLifeList.Count > 0)
+        {
+            int index = playerLifeList.Count - 1;
+            Destroy(playerLifeList[index]);
+            playerLifeList.RemoveAt(index);
+        }
     }
 }

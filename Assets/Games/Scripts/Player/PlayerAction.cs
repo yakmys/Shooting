@@ -68,15 +68,6 @@ public class PlayerAction : MonoBehaviour
         if (Input.touchCount == 2)
         {
             inputmousepos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
-//            for (int count = 0; count < Input.touchCount; ++count)
-//            {
-//                Vector3 pos = Camera.main.ScreenToWorldPoint(Input.touches[count].position);
-//                if (centerPos.transform.position.x >= pos.x)
-//                {
-//                    inputmousepos =pos;
-//                    break;
-//                }
-//            }
         }
         else
         {

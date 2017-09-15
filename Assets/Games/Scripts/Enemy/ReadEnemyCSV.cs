@@ -45,7 +45,7 @@ public class ReadEnemyCSV : MonoBehaviour
             Debug.Log(sr + "End");
             sr.ReadToEnd();
         }
-        
+
     }
 
     /// <summary>

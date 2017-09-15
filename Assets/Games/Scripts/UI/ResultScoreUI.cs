@@ -3,6 +3,7 @@
 //制作日　9月13日
 //リザルトシーンでスコアに関するクラス
 /////////////////////
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

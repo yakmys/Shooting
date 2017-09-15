@@ -26,7 +26,7 @@ public class GameMaster : MonoBehaviour
     [SerializeField]
     SceneMaster scenMasterScript;
     [SerializeField]
-    ReadEnemyCSV readEnemyCsvScript;//CSVが読み込まれなかったよう
+    ReadEnemyCSV readEnemyCsvScript;//CSVが読み込まれなかった時用
     ////////////////////
     //変数宣言終了
     ////////////////////

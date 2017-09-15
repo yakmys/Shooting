@@ -40,6 +40,7 @@ public class SocketClass : MonoBehaviour
 
     public void Connect(ref Socket sock,IPAddress ip,int port)
     {
+        Debug.Log("サーバーに接続開始");
         while (!sock.Connected) {
             sock.Connect(ip, port);
         }

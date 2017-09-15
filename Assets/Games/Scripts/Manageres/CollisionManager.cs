@@ -22,7 +22,8 @@ public class CollisionManager : MonoBehaviour {
     EffectManager effectManagerScript;
     [SerializeField]
     SeManager seManagerScript;
-
+    [SerializeField]
+    ScoreManager scoreManagerScript;
     /// <summary>
     /// エネミーがほかのオブジェクトと衝突したときの関数
     /// </summary>
@@ -62,7 +63,8 @@ public class CollisionManager : MonoBehaviour {
             effectManagerScript.InstanceEffect(0,playerobj.transform.position);
             if(result)
             {
-                gameMasterScript.GameResult(GameMaster.GameStatus.GameOver);
+                scoreManagerScript.SetScore(uiManagerScript.GetScore().ToString());
+                uiManagerScript.SetIsFade();
             }
         }
     }

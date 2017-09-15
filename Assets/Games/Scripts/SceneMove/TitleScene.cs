@@ -8,7 +8,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TitleScene : MonoBehaviour {
+public class TitleScene : MonoBehaviour
+{
 
     [SerializeField]
     SceneMaster sceneMasterScript;

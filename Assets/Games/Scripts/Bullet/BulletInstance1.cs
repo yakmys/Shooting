@@ -34,7 +34,7 @@ public class BulletInstance1 : MonoBehaviour {
             z = Mathf.Sin(360 * angle)*45;
             Quaternion instancerotation = Quaternion.identity;
             instancerotation.z = z;
-           GameObject obj = Instantiate(bulletObj,transform.position,Quaternion.identity);
+            GameObject obj = Instantiate(bulletObj,transform.position,Quaternion.identity);
             angle += 0.1f;
 
         }

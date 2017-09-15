@@ -22,7 +22,12 @@ public class UIManager : MonoBehaviour
     bool isStartUI = false;
     [SerializeField]
     ScoreUI scoreUIScript;
-
+    [SerializeField]
+    SceneMaster sceneMasterScript;
+    [SerializeField]
+    FadeOut fadeOutSciript;
+    [SerializeField]
+    TimeManager timeManagerScript;
     void Start()
     {
         if (!gameMasterScript.GetIsGame())
@@ -72,5 +77,17 @@ public class UIManager : MonoBehaviour
     public int GetScore()
     {
         return scoreUIScript.GetScore();
+    }
+
+    public void SetIsFade()
+    {
+        gameMasterScript.SetIsGame(false);
+        timeManagerScript.SetSpeed(0.1f);
+        fadeOutSciript.enabled = true;
+    }
+
+    public void SceneMove()
+    {
+        sceneMasterScript.SelectStage(SceneMaster.SceneStage.Result2);
     }
 }

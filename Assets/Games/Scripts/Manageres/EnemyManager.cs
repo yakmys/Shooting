@@ -101,10 +101,10 @@ public class EnemyManager : MonoBehaviour
         sumEnemyCount--;
         if (onStageEnemyCount == 0 && !isInstance && sumEnemyCount != 0)
         {
-            if(instanceClassListIndex != instanceClassList.Count)
-            isInstance = true;
+            if (instanceClassListIndex != instanceClassList.Count)
+                isInstance = true;
         }
-        else if(sumEnemyCount == 0)
+        else if (sumEnemyCount == 0)
         {
             if (readEnemyCSVScript.GetIsReadCSV())
             {
@@ -114,7 +114,7 @@ public class EnemyManager : MonoBehaviour
             else
             {
                 scoreManagerScript.SetScore(uiManagerScript.GetScore().ToString());
-                gameMasterScript.GameResult(GameMaster.GameStatus.Result2);
+                uiManagerScript.SetIsFade();
             }
         }
     }
@@ -126,7 +126,7 @@ public class EnemyManager : MonoBehaviour
 
     public void IniSumEnemyCount()
     {
-        for(int count =0;count < instanceClassList.Count;count++)
+        for (int count = 0; count < instanceClassList.Count; count++)
         {
             sumEnemyCount += instanceClassList[count].GetCount();
         }
@@ -153,6 +153,6 @@ public class EnemyManager : MonoBehaviour
 
     public GameObject GetPlayerObj()
     {
-       return playerManagerScript.GetPlayerObj();
+        return playerManagerScript.GetPlayerObj();
     }
 }
