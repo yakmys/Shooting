@@ -114,6 +114,7 @@ public class EnemyManager : MonoBehaviour
             else
             {
                 scoreManagerScript.SetScore(uiManagerScript.GetScore().ToString());
+                playerManagerScript.SetTimeObjEnabled(false);
                 uiManagerScript.SetIsFade();
             }
         }

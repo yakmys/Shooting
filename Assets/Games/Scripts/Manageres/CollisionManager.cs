@@ -26,7 +26,8 @@ public class CollisionManager : MonoBehaviour {
     ScoreManager scoreManagerScript;
     [SerializeField]
     PlayerManager playerManagerScript;
-
+    [SerializeField]
+    TimeManager timeManagerScript;
     /// <summary>
     /// エネミーがほかのオブジェクトと衝突したときの関数
     /// </summary>
@@ -66,6 +67,8 @@ public class CollisionManager : MonoBehaviour {
             if(result)
             {
                 scoreManagerScript.SetScore(uiManagerScript.GetScore().ToString());
+                playerManagerScript.SetTimeObjEnabled(false);
+                timeManagerScript.SetSpeed(0.1f);
                 uiManagerScript.SetIsFade();
             }
         }
@@ -92,5 +95,14 @@ public class CollisionManager : MonoBehaviour {
         {
             Destroy(collisionobj);
         }
+    }
+
+    public bool HitTimerSkillArea(GameObject collisionobj)
+    {
+        if(collisionobj.tag == tagNames[2])
+        {
+            return true;
+        }
+        return false;
     }
 }

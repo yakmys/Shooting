@@ -78,6 +78,7 @@ public class PlayerAction : MonoBehaviour
         movepos = WallCollisionCheck(movepos);
         transform.position += movepos * playerStatusScript.GetMoveSpeed() * Time.deltaTime;
     }
+
     /// <summary>
     /// マウスの位置によって動く方向を指定
     /// </summary>

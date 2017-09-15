@@ -25,6 +25,7 @@ public class PlayerSkillAction : MonoBehaviour
     float subtractionValue;
     [SerializeField]
     bool isSkill = true;
+
     public enum SkillStatus
     {
         None,
@@ -32,6 +33,7 @@ public class PlayerSkillAction : MonoBehaviour
         NoUse
     }
     SkillStatus status = SkillStatus.NoUse;
+
     // Update is called once per frame
     void Update()
     {
@@ -50,7 +52,7 @@ public class PlayerSkillAction : MonoBehaviour
             status = SkillStatus.Use;
         }
 
-        if (Input.touchCount != 2)
+        if (Input.touchCount == 1 && isSkill)
         {
             timeManagerScript.SetDefaultSpeed();
             status = SkillStatus.NoUse;
@@ -83,6 +85,24 @@ public class PlayerSkillAction : MonoBehaviour
         else if (timeGage.value >= 0.5f)
         {
             isSkill = true;
+        }
+    }
+
+    public void SetSkillStatus(SkillStatus set)
+    {
+        status = set;
+        switch (set)
+        {
+            case SkillStatus.Use:
+                status = set;
+                isSkill = true;
+                timeManagerScript.SetSpeed(0.1f);
+                break;
+            case SkillStatus.NoUse:
+                status = set;
+                isSkill = false;
+                timeManagerScript.SetDefaultSpeed();
+                break;
         }
     }
 }

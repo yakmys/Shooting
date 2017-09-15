@@ -24,6 +24,9 @@ public class PlayerManager : MonoBehaviour
     GameObject BomObj;
     [SerializeField]
     SeManager seManagerScript;
+    [SerializeField]
+    GameObject timeObj;
+
     public bool GetIsGame()
     {
         return gameMasterScript.GetIsGame();
@@ -43,5 +46,10 @@ public class PlayerManager : MonoBehaviour
     {
         seManagerScript.SeStart(3);
         BomObj.GetComponent<PlayerBomSkill>().enabled = true;
+    }
+
+    public void SetTimeObjEnabled(bool set)
+    {
+        timeObj.SetActive(set);
     }
 }
