@@ -69,9 +69,9 @@ public class PlayerAction : MonoBehaviour
         {
             inputmousepos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
         }
-        else
+        else if(Input.touchCount == 1)
         {
-            inputmousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            inputmousepos = Camera.main.ScreenToWorldPoint(Input.touches[0].position);
         }
         inputmousepos.z = 0;
         Vector3 movepos = MousePosionCheck(inputmousepos);

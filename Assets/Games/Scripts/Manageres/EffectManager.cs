@@ -16,6 +16,7 @@ public class EffectManager : MonoBehaviour
 
     public void InstanceEffect(int number, Vector3 pos)
     {
+        pos.z = -2;
         Instantiate(gameEffects[number], pos, Quaternion.identity);
     }
 }

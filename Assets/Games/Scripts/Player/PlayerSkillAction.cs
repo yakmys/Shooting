@@ -25,7 +25,7 @@ public class PlayerSkillAction : MonoBehaviour
     float subtractionValue;
     [SerializeField]
     bool isSkill = true;
-
+    bool isTimeArea = false;
     public enum SkillStatus
     {
         None,
@@ -49,10 +49,11 @@ public class PlayerSkillAction : MonoBehaviour
         if (Input.touchCount == 2 && isSkill)
         {
             timeManagerScript.SetSpeed(lateTime);
+            isTimeArea = false;
             status = SkillStatus.Use;
         }
 
-        if (Input.touchCount == 1 && isSkill)
+        else if (Input.touchCount < 2 && !isTimeArea)
         {
             timeManagerScript.SetDefaultSpeed();
             status = SkillStatus.NoUse;
@@ -95,12 +96,12 @@ public class PlayerSkillAction : MonoBehaviour
         {
             case SkillStatus.Use:
                 status = set;
-                isSkill = true;
+                isTimeArea = true;
                 timeManagerScript.SetSpeed(0.1f);
                 break;
             case SkillStatus.NoUse:
                 status = set;
-                isSkill = false;
+                isTimeArea = false;
                 timeManagerScript.SetDefaultSpeed();
                 break;
         }

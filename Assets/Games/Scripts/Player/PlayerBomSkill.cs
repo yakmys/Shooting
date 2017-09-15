@@ -4,8 +4,6 @@
 //プレイヤーが当たった時に使う処理
 //////////////////////
 
-
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +18,8 @@ public class PlayerBomSkill : MonoBehaviour {
     float timer;
     float copytimer;
     bool isIni = true;
+    [SerializeField]
+    float instancePos;
 
     void Update()
     {
@@ -32,7 +32,10 @@ public class PlayerBomSkill : MonoBehaviour {
 
     void Ini()
     {
-        Instantiate(bomBerEffectObj,transform.position,Quaternion.identity);
+        Vector3 pos = transform.position;
+        pos.z = instancePos;
+        GameObject obj = Instantiate(bomBerEffectObj,pos,Quaternion.identity);
+        obj.transform.parent = transform;
         GetComponent<BoxCollider2D>().enabled = true;
         copytimer = timer;
         isIni = false;
