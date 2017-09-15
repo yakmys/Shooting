@@ -17,13 +17,29 @@ public class PlayerLifeUI : MonoBehaviour
     GameObject playerUIObj;
     [SerializeField]
     GameObject Setpos;
+    [SerializeField]
+    UIManager uiManagaerScript;
+    int hp;
+
+    void Start()
+    {
+        int hp = uiManagaerScript.GetPlayerHp();
+        Vector3 pos = Setpos.transform.position;
+        for (int count = 0; count < hp; count++)
+        {
+            GameObject obj = Instantiate(playerUIObj, pos, Quaternion.identity);
+            playerLifeList.Add(obj);
+            pos.x++;
+        }
+    }
 
     public void SetLife(int set)
     {
         Vector3 pos = Setpos.transform.position;
+        hp--;
         if (playerLifeList.Count > 0)
         {
-            for (int count = 0; count < set; count++)
+            for (int count = 0; count < hp; count++)
             {
                 GameObject obj = Instantiate(playerUIObj, pos, Quaternion.identity);
                 playerLifeList.Add(obj);

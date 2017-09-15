@@ -12,7 +12,6 @@ public class ScoreManager : MonoBehaviour {
 	}
     public void SetScore(string data)
     {
-        Debug.Log("a");
         score = data;
     }
 

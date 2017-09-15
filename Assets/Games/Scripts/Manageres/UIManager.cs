@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     FadeOut fadeOutSciript;
     [SerializeField]
     TimeManager timeManagerScript;
+
     void Start()
     {
         if (!gameMasterScript.GetIsGame())
@@ -89,5 +90,10 @@ public class UIManager : MonoBehaviour
     public void SceneMove()
     {
         sceneMasterScript.SelectStage(SceneMaster.SceneStage.Result2);
+    }
+
+    public int GetPlayerHp()
+    {
+        return playerManagerScript.GetHp();
     }
 }

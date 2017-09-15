@@ -24,6 +24,7 @@ public class CollisionManager : MonoBehaviour {
     SeManager seManagerScript;
     [SerializeField]
     ScoreManager scoreManagerScript;
+
     /// <summary>
     /// エネミーがほかのオブジェクトと衝突したときの関数
     /// </summary>
@@ -44,8 +45,6 @@ public class CollisionManager : MonoBehaviour {
                 DestoryObj(enemyobj);
             }
         }
-
-
     }
 
     /// <summary>
