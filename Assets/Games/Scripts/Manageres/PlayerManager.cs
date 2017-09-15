@@ -18,6 +18,12 @@ public class PlayerManager : MonoBehaviour
     PlayerStatus playerStatusScript;
     [SerializeField]
     GameObject playerObj;
+    [SerializeField]
+    PlayerBomSkill playerBomSkill;
+    [SerializeField]
+    GameObject BomObj;
+    [SerializeField]
+    SeManager seManagerScript;
     public bool GetIsGame()
     {
         return gameMasterScript.GetIsGame();
@@ -31,5 +37,11 @@ public class PlayerManager : MonoBehaviour
     public GameObject GetPlayerObj()
     {
         return playerObj;
+    }
+
+    public void SetBomSkillScript(bool set)
+    {
+        seManagerScript.SeStart(3);
+        BomObj.GetComponent<PlayerBomSkill>().enabled = true;
     }
 }
